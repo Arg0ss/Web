@@ -1,4 +1,5 @@
 import React from "react";
+import Router from "next/router";
 import { AiFillInstagram, AiOutlineGoogle } from "react-icons/ai";
 import * as S from "./styles";
 
@@ -35,10 +36,10 @@ export default function Login() {
               <input type="button" value="Login" />
             </form>
             <div className="esquecisenha">
-              <a className="Esqs" href="/Esqsenha">
+              <a className="Esqs" onClick={() => Router.push('/esqueci-a-senha')}>
                 Esqueci a Senha
               </a>
-              <a className="Esqs" href="/cadastro">
+              <a className="Esqs" onClick={() => Router.push('/cadastro')}>
                 Cadastra-se
               </a>
             </div>

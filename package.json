@@ -10,6 +10,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.5.1",
     "antd": "^4.19.5",
+    "axios": "^0.26.1",
     "gsap": "^3.10.2",
     "jquery": "^3.6.0",
     "next": "latest",

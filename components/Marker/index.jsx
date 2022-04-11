@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 
-import { TextAnnotator } from "react-text-annotate";
+import { TokenAnnotator } from "react-text-annotate";
 import { Drawer } from "antd";
 import { RiMarkupFill, RiMarkupLine }  from "react-icons/ri"
 
@@ -22,11 +22,12 @@ class Marker extends React.Component {
   };
 
   handleChange = (value) => {
-    console.log({ save_marks: value})
+    // console.log(error)
     if (this.state.on_marker) {
       this.setState({ value });
     } else {
-        const find = Translation.find((t) => value.slice(-1)[0] && t.word === value.slice(-1)[0].text);
+        const find = Translation.find((t) => value.slice(-1)[0] && t.word === value.slice(-1)[0].tokens[0]);
+        console.log(value)
       if (find) {
         this.setState({ translation: find });
       } else {
@@ -75,8 +76,8 @@ class Marker extends React.Component {
           <p>{translation && translation.t}</p>
         </Drawer>
         <div className="container-text">
-        <TextAnnotator
-          content={TEXT}
+        <TokenAnnotator
+          tokens={TEXT.split(" ")}
           value={this.state.value}
           onChange={this.handleChange}
           getSpan={(span) => ({

@@ -10,13 +10,23 @@ export default function Cadastro() {
         <section id="tudo1">
           <main className="principal1">
             <h2>Cadastro</h2>
-            <form action="">
+            <form action="/">
               <div className="classes1">
-                <label>Email</label>
+                <label>email</label>
                 <input
                   type="email"
                   name="username"
                   placeholder="Coloque seu email"
+                  autoComplete="new-password"
+                  requeired="true"
+                />
+                <div className="underline"></div>
+              </div>
+              <div className="classes1">
+                <label>username</label>
+                <input
+                  name="username"
+                  placeholder="Coloque seu username"
                   autoComplete="new-password"
                   requeired="true"
                 />
@@ -34,16 +44,26 @@ export default function Cadastro() {
                 <div className="underline"></div>
               </div>
               <div className="classes1">
-                <p className="Repetir">Senha</p>
+                <label> Senha </label>
                 <input
                   type="password"
-                  placeholder="Repita sua senha"
+                  name="password"
+                  placeholder="Coloque sua senha"
+                  autoComplete="new-password"
+                  requeired="true"
+                />
+                <div className="underline"></div>
+              </div>
+              <div className="classes1">
+                <p className="Repetir">CPF</p>
+                <input
+                  placeholder="CPF"
                   autoComplete="new-password"
                   requeired="true"
                 />
                 <div className="underline"> </div>
               </div>
-              <a href="/cadastro1">
+              <a href="/cadastro">
                 <input className="botao" type="button" value="Cadastrar" />
               </a>
             </form>

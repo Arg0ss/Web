@@ -5,6 +5,9 @@
             "app/*": [
                 "./*"
             ],
+            "services": [
+                "./services/*"
+            ],
             "components/index.js": [
                 "./components/*"
             ]

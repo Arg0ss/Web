@@ -1,6 +1,67 @@
 import styled from "styled-components";
 
+export const Underline = styled.div`
+  &::after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(45deg, #8e2de2, #4a00e0);
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+    transform-origin: left;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    bottom: -5px;
+    left: 0;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  ${(props) =>
+    props.error === true &&
+    `
+&::before {
+  content: '';
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  bottom: -5px;
+  left: 0;
+  background: red !important;
+}
+`}
+`;
+
+export const Input = styled.input`
+  outline: none;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+`;
+
 export const Container = styled.section`
+
+.button-back {
+  position: absolute;
+    width: 45px;
+    height: 45px;
+    background: #cccccc;
+    border-radius: 50%;
+    margin-top: -25px;
+    line-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: calc(400px - 25px);
+    cursor: pointer;
+}
 .background-image {
     min-height: 100vh;
     min-width: 100vw;
@@ -8,16 +69,23 @@ export const Container = styled.section`
     align-items: center;
     justify-content: center;
   }
+
+  input {
+    font-size: 0.9rem;
+color: rgba(0, 0, 0, 0.7);
+    &:focus-visible {
+      outline: -webkit-focus-ring-color auto 0px;
+  }
+  }
   
   main.principal1 {
     background: white;
     min-width: 320px;
-    min-height: 40vh;
-    padding: 2rem;
+    // padding: 2rem;
     box-shadow: 5px 5px 15px rgb(0 0 0 / 20%);
     border-radius: 8px;
     width: 400px;
-    height: 600px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -26,28 +94,31 @@ export const Container = styled.section`
   main h2 {
     font-weight: 600;
     position: relative;
-  }
-  
-  main h2::before {
-    content: '';
-    position: absolute;
-    height: 4px;
-    width: 25px;
-    bottom: 3px;
-    left: 0;
-    border-radius: 8px;
-    background: linear-gradient(45deg, #8e2de2, #4a00e0);
+    margin: 0;
+    padding: 2rem;
+    border-bottom: 1px solid #cccccc;
   }
   
   form {
     display: flex;
     flex-direction: column;
+    padding: 2rem;
   }
   
   .classes1 {
     position: relative;
     margin-bottom: 25px;
     width: 100%;
+
+    .subtitle {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      .error {
+        color: red;
+      }
+    }
   }
   
   form .classes1:first-child {s
@@ -81,23 +152,8 @@ export const Container = styled.section`
     transition: all .3s ease-in-out;
     transform-origin: left;
   }
-  
-  .classes1 input:focus ~ .underline::after {
-    transform: scaleX(1);
-  }
-  
-  .classes1 input {
-    outline: none;
-    font-size: 0.9rem;
-    color: rgba(0, 0, 0, 0.7);
-    width: 100%;
-  }
-  
-  .classes1 input::placeholder {
-    color: rgba(0, 0, 0, 0.5);
-  }
-  
-  form input[type="button"] {
+
+  .botao-submit {
     margin-top: 1rem;
     padding: 10px;
     width: 100%;
@@ -108,11 +164,22 @@ export const Container = styled.section`
     font-weight: 300;
     border-radius: 4px;
     transition: all 0.3s ease;
-  }
-  
-  form input[type="button"]:hover {
-    letter-spacing: 0.5px;
-    background: linear-gradient(to right, #333ea8, #5f2cb0    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 41px;
+    line-height: 0;
+    transition: all 300ms;
+    
+    &:disabled {
+      pointer-events: none;
+    }
+
+    &:hover {
+      letter-spacing: 0.5px;
+      transition: all 300ms;
+      background: linear-gradient(to right, #333ea8, #5f2cb0);
+    }
   }
   
   .midias {
@@ -157,7 +224,8 @@ export const Container = styled.section`
   }
   
   .reflogin {
-    font-size:0.8rem
+    font-size: 0.8rem;
+    padding: 0 2rem 2rem;
   }
   .background-image {
     width: 55%;
@@ -189,4 +257,4 @@ export const Container = styled.section`
     display: inline-block;
     text-decoration: none;
   }
-`
+`;

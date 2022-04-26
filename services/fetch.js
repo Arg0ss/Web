@@ -4,7 +4,7 @@ const Fetch = {
   origin: process.env.API_URL,
   header: {
     "Content-Type": "application/json; charset=utf-8",
-    // 'Access-Control-Allow-Origin': 'http://localhost:4200',
+    "Access-Control-Allow-Origin": "*",
   },
   get: (url) => {
     return axios
@@ -36,5 +36,4 @@ const Fetch = {
 
 axios.defaults.headers.common = Fetch.header;
 axios.defaults.baseURL = Fetch.origin;
-
 export default Fetch;

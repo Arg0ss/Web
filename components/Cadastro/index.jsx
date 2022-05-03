@@ -4,7 +4,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import ScaleLoader from "react-spinners/ScaleLoader";
 import InputMask from "react-input-mask";
-import { FiArrowLeft } from "react-icons/fi"
+import { FiArrowLeft } from "react-icons/fi";
 import { notification } from "antd";
 
 import * as S from "./styles";
@@ -55,15 +55,20 @@ export default function Cadastro() {
         const { data } = error.response;
         setError(data);
 
-        const ErrosStepOne = ['email', 'username', 'password', 'password_confirm']
+        const ErrosStepOne = [
+          "email",
+          "username",
+          "password",
+          "password_confirm",
+        ];
 
         ErrosStepOne.map((erro, index) => {
-          Object.entries(data).filter(function(element, index) { 
-            if(element[0] === erro) {
-              setSteps(0)
+          Object.entries(data).filter(function (element, index) {
+            if (element[0] === erro) {
+              setSteps(0);
             }
-           })
-        })
+          });
+        });
 
         Object.entries(data).map((element, index) => {
           console.log(element);
@@ -86,143 +91,142 @@ export default function Cadastro() {
         <section id="tudo1">
           <main className="principal1">
             {steps === 1 && (
-              <span onClick={() => setSteps(0)} className="button-back"><FiArrowLeft color="#FFF" size={17}/></span>
+              <span onClick={() => setSteps(0)} className="button-back">
+                <FiArrowLeft color="#FFF" size={17} />
+              </span>
             )}
             <h2>Cadastro</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
               {steps === 0 && (
-              <>
-              <div className="classes1">
-                <div className="subtitle">
-                  <p>email</p>{" "}
-                </div>
-                <S.Input
-                  type="email"
-                  name="username"
-                  placeholder="Coloque seu email"
-                  autoComplete="new-password"
-                  requeired="true"
-                  {...register("email")}
-                />
-                <S.Underline error={error.email && true} />
-              </div>
-              <div className="classes1">
-                <div className="subtitle">
-                  <p>username</p>
-                </div>
-                <S.Input
-                  name="username"
-                  placeholder="Coloque seu username"
-                  autoComplete="new-password"
-                  requeired="true"
-                  {...register("username")}
-                />
-                <S.Underline error={error.username && true} />
-              </div>
-              <div className="classes1">
-                <div className="subtitle">
-                  <p>password</p>
-                </div>
-                <S.Input
-                  type="password"
-                  name="password"
-                  placeholder="Coloque sua senha"
-                  autoComplete="new-password"
-                  requeired="true"
-                  {...register("password")}
-                />
-                <S.Underline error={error.password && true} />
-              </div>
-              <div className="classes1">
-                <div className="subtitle">
-                  <p>password confirm</p>{" "}
-                </div>
-                <S.Input
-                  type="password"
-                  name="password"
-                  placeholder="Coloque sua senha"
-                  autoComplete="new-password"
-                  requeired="true"
-                  {...register("password_confirm")}
-                />
-                <S.Underline error={error.password_confirm && true} />
-              </div>
-              <button
-                className="botao-submit"
-                onClick={()=> setSteps(1)}
-              >
-                Continuar
-              </button>
-              </>
+                <>
+                  <div className="classes1">
+                    <div className="subtitle">
+                      <p>email</p>{" "}
+                    </div>
+                    <S.Input
+                      type="email"
+                      name="username"
+                      placeholder="Coloque seu email"
+                      autoComplete="new-password"
+                      requeired="true"
+                      {...register("email")}
+                    />
+                    <S.Underline error={error.email && true} />
+                  </div>
+                  <div className="classes1">
+                    <div className="subtitle">
+                      <p>username</p>
+                    </div>
+                    <S.Input
+                      name="username"
+                      placeholder="Coloque seu username"
+                      autoComplete="new-password"
+                      requeired="true"
+                      {...register("username")}
+                    />
+                    <S.Underline error={error.username && true} />
+                  </div>
+                  <div className="classes1">
+                    <div className="subtitle">
+                      <p>password</p>
+                    </div>
+                    <S.Input
+                      type="password"
+                      name="password"
+                      placeholder="Coloque sua senha"
+                      autoComplete="new-password"
+                      requeired="true"
+                      {...register("password")}
+                    />
+                    <S.Underline error={error.password && true} />
+                  </div>
+                  <div className="classes1">
+                    <div className="subtitle">
+                      <p>password confirm</p>{" "}
+                    </div>
+                    <S.Input
+                      type="password"
+                      name="password"
+                      placeholder="Coloque sua senha"
+                      autoComplete="new-password"
+                      requeired="true"
+                      {...register("password_confirm")}
+                    />
+                    <S.Underline error={error.password_confirm && true} />
+                  </div>
+                  <button className="botao-submit" onClick={() => setSteps(1)}>
+                    Continuar
+                  </button>
+                </>
               )}
-           {steps === 1 && (
-             <>
-              <div className="classes1">
-                <div className="subtitle">
-                  <p>telefone</p>{" "}
-                </div>
-                <InputMask
-                  {...(e) => e}
-                  autoComplete="new-password"
-                  placeholder="(00) 00000-0000"
-                  mask="(99) 99999-9999"
-                  beforeMaskedValueChange=" "
-                  requeired="true"
-                  {...register("tel")}
-                />
-                <S.Underline error={error.tel && true} />
-              </div>
+              {steps === 1 && (
+                <>
+                  <div className="classes1">
+                    <div className="subtitle">
+                      <p>telefone</p>{" "}
+                    </div>
+                    <InputMask
+                      {...(e) => e}
+                      autoComplete="new-password"
+                      placeholder="(00) 00000-0000"
+                      mask="(99) 99999-9999"
+                      beforeMaskedValueChange=" "
+                      requeired="true"
+                      {...register("tel")}
+                    />
+                    <S.Underline error={error.tel && true} />
+                  </div>
 
-              <div className="classes1">
-                <div className="subtitle">
-                  <p>data nascimento</p>{" "}
-                </div>
-                <InputMask
-                  {...(e) => e}
-                  autoComplete="new-password"
-                  placeholder="00/00/0000"
-                  mask="9999-99-99"
-                  beforeMaskedValueChange=" "
-                  requeired="true"
-                  {...register("data_nascimento")}
-                />
-                <S.Underline error={error.data_nascimento && true} />
-              </div>
+                  <div className="classes1">
+                    <div className="subtitle">
+                      <p>data nascimento</p>{" "}
+                    </div>
+                    <InputMask
+                      {...(e) => e}
+                      autoComplete="new-password"
+                      placeholder="00/00/0000"
+                      mask="9999-99-99"
+                      beforeMaskedValueChange=" "
+                      requeired="true"
+                      {...register("data_nascimento")}
+                    />
+                    <S.Underline error={error.data_nascimento && true} />
+                  </div>
 
-              <div className="classes1">
-                <div className="subtitle">
-                  <p>cpf</p>
-                </div>
-                <InputMask
-                  {...(e) => e}
-                  autoComplete="new-password"
-                  placeholder="000.000.000-00"
-                  mask="999.999.999-99"
-                  beforeMaskedValueChange=" "
-                  requeired="true"
-                  {...register("cpf")}
-                />
-                {/* <S.Input
+                  <div className="classes1">
+                    <div className="subtitle">
+                      <p>cpf</p>
+                    </div>
+                    <InputMask
+                      {...(e) => e}
+                      autoComplete="new-password"
+                      placeholder="000.000.000-00"
+                      mask="999.999.999-99"
+                      beforeMaskedValueChange=" "
+                      requeired="true"
+                      {...register("cpf")}
+                    />
+                    {/* <S.Input
                   placeholder="CPF"
                   autoComplete="new-password"
                   requeired="true"
                   {...register("cpf")}
                 /> */}
-                <S.Underline error={error.cpf && true} />
-              </div>
-              <button
-                disabled={isLoading}
-                className="botao-submit"
-                type="submit"
-              >
-                {isLoading ? (
-                  <ScaleLoader width={3} height={10} color="#f1f1f1" />
-                ) : (
-                  "Cadastro"
-                )}
-              </button>
-             </>
-           )}
+                    <S.Underline error={error.cpf && true} />
+                  </div>
+                  <button
+                    disabled={isLoading}
+                    className="botao-submit"
+                    type="submit"
+                  >
+                    {isLoading ? (
+                      <ScaleLoader width={3} height={10} color="#f1f1f1" />
+                    ) : (
+                      "Cadastro"
+                    )}
+                  </button>
+                </>
+              )}
             </form>
             <div className="reflogin">
               <p>Caso ja tenha uma conta:</p>

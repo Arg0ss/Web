@@ -10,6 +10,14 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
+
+.positive {
+    color: #8dc647;  
+}
+
+.negative {
+    color: #e15241;
+}
 `;
 
 export default GlobalStyle;

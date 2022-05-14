@@ -18,7 +18,7 @@ export default function Cadastro() {
     setIsLoading(true);
     axios
       .post(
-        "https://cors-anywhere.herokuapp.com/https://drf-criptomentor.herokuapp.com/api/v1/createUser",
+        "https://cors-criptomentor.herokuapp.com/https://drf-criptomentor.herokuapp.com/api/v1/?format=json",
         {
           email: data.email,
           username: data.username,
@@ -37,6 +37,7 @@ export default function Cadastro() {
           headers: {
             "Content-Type": "application/json; charset=utf-8",
             "Access-Control-Allow-Origin": "*",
+            "X-Requested-With": "XMLHttpRequest"
           },
         }
       )

@@ -1,0 +1,57 @@
+const data = [
+  {
+    tag: "Criptomoeda",
+    background: "https://media.moneytimes.com.br/uploads/2021/09/ethereum.jpg",
+    timer: 10,
+    titulo: "Título",
+    description: "Descrição",
+    url: "",
+  },
+  {
+    tag: "Criptomoeda",
+    background: "https://media.moneytimes.com.br/uploads/2021/09/ethereum.jpg",
+    timer: 10,
+    titulo: "Título",
+    description: "Descrição",
+    url: "",
+    cor: "#0000FF",
+  },
+  {
+    tag: "Criptomoeda",
+    background: "https://media.moneytimes.com.br/uploads/2021/09/ethereum.jpg",
+    timer: 25,
+    titulo: "Título",
+    description: "Descrição",
+    url: "",
+    cor: "#0000FF",
+  },
+  {
+    tag: "BlockChain",
+    background: "https://media.moneytimes.com.br/uploads/2021/09/ethereum.jpg",
+    timer: 25,
+    titulo: "Título",
+    description: "Descrição",
+    url: "",
+    cor: "#8000ff",
+  },
+  {
+    tag: "Finanças",
+    background: "https://media.moneytimes.com.br/uploads/2021/09/ethereum.jpg",
+    timer: 15,
+    titulo: "Título",
+    description: "Descrição",
+    url: "",
+    cor: "	#ffff00",
+  },
+  {
+    tag: "Chupeta",
+    background: "https://media.moneytimes.com.br/uploads/2021/09/ethereum.jpg",
+    timer: 20,
+    titulo: "Cripto e suas regras",
+    description: "Maconha",
+    url: "",
+    cor: "	#008000",
+  },
+];
+
+export default data;

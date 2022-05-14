@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { Table } from "antd";
+import { Table, Badge  } from "antd";
 import Charts from "../Charts";
 
 const useGetCardData = (options) => {
@@ -65,7 +65,7 @@ export default function List() {
       title: "Price",
       dataIndex: "current_price",
       key: "current_price",
-      defaultSortOrder: 'descend',
+      defaultSortOrder: "descend",
       sorter: (a, b) => a.current_price - b.current_price,
       render: (current_price) => {
         return <>{formatPrice(current_price)}</>;
@@ -102,7 +102,13 @@ export default function List() {
     staleTime: 60000,
   });
 
+
   if (isLoading) return null;
 
-  return <Table columns={columns} dataSource={data} />;
+  return (
+    <Table
+      columns={columns}
+      dataSource={data}
+    />
+  );
 }

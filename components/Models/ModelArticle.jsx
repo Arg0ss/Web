@@ -10,13 +10,12 @@ export const Article = ({ data, children }) => {
         <div className="posts-main-container">
          {data.length > 0 ? (
            data.map((item, index) => {
-            console.log(item);
             return (
               <article key={index} className="filter-item">
                 <div className="all cripto">
                   <div className="border">
                     <div className="post-img">
-                      <img className="imagemparte" src={item.background} />
+                      <img draggable={false} className="imagemparte" src={item.background} />
                       <span
                         style={{ background: item.cor }}
                         className="category-name"

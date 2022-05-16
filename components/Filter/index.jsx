@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Slider } from "antd";
+import Head from "next/head";
 import { Tag } from "./assets/filter";
 import { Article } from "../Models/ModelArticle";
-
 import * as S from "./styles";
 
 import data from "./assets/data";
@@ -65,46 +65,51 @@ export default function Fitler() {
   };
 
   const Desactive = {
-    opacity: 0.6,
+    opacity: 0.5,
   };
 
   return (
-    <S.Container>
-      <Article data={res}>
-        <div className="main-container">
-          <div className="filter-container">
-            <div className="category-head">
-              <ul>
-                {Tag.map((item, index) => (
-                  <div
-                    key={index}
-                    onClick={() => {
-                      setTimer(0);
-                      setTag(item.type);
-                    }}
-                    style={item.type === tag ? Active : Desactive}
-                    className="category-title active"
-                  >
-                    <li>{item.type}</li>
-                    <span>{item.icon}</span>
-                  </div>
-                ))}
-              </ul>
-            </div>
-            {tag === "Tudo" ? undefined : (
-              <div className="select">
-                <Slider
-                  onChange={handleChange}
-                  marks={marks}
-                  step={null}
-                  value={timer}
-                  defaultValue={timer}
-                />
+    <>
+      <S.Container>
+        <Article data={res}>
+          <div className="main-container">
+            <div className="filter-container">
+              <div className="category-head">
+                <ul>
+                  {Tag.map((item, index) => (
+                    <S.Button
+                      key={index}
+                      onClick={() => {
+                        setTimer(0);
+                        setTag(item.type);
+                      }}
+                      color={item.color}
+                      style={item.type === tag ? Active : Desactive}
+                    >
+                      <span>{item.icon}</span>
+                      <li>{item.type}</li>
+                    </S.Button>
+                  ))}
+                </ul>
               </div>
-            )}
+
+              {tag === "Tudo" ? undefined : (
+                <div className="select">
+                  <Slider
+                    min={0}
+                    max={25}
+                    onChange={handleChange}
+                    marks={marks}
+                    step={null}
+                    value={timer}
+                    defaultValue={timer}
+                  />
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      </Article>
-    </S.Container>
+        </Article>
+      </S.Container>
+    </>
   );
 }

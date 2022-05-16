@@ -6,7 +6,6 @@ img{width: 100%}
     width: 90vw;
     margin: 0 auto;
     padding: 40px 0;
-    margin-bottom: 50px;
     font-family: "Montserrat", sans-serif;
   }
   .main-container > h2 {
@@ -59,8 +58,8 @@ img{width: 100%}
   }
   .border {
     box-shadow: 0px 8px 22px -12px rgba(0, 0, 0, 0.64);
-    border-radius: 50px;
-    height: 450px;
+    border-radius: 10px;
+    height: fit-content;
   }
   .post-img {
     position: relative;
@@ -151,7 +150,7 @@ img{width: 100%}
     background: #f0544f;
   }
   .imagemparte {
-    border-radius: 50px;
+    border-radius: 10px 10px 0px 0px;
   }
   .fotter {
     padding: 40px 0;

@@ -1,5 +1,29 @@
 import styled from "styled-components";
 
+
+export const Button = styled.div`
+  flex: 0 0 calc(16.6667% - 10px);
+  display: flex;
+  justify-content: center;
+  background: ${(props) =>props.color || "#a8a8a8"};
+  padding: 12px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  border-radius: 50px;
+  font-family: "Montserrat", sans-serif;
+
+&:hover {
+  opacity: 0.7;
+}
+li {
+  padding: 0 10px;
+}
+span {
+  color: #222;
+}
+`
+
 export const Container = styled.section`
 img{width: 100%}
   .main-container {
@@ -29,39 +53,25 @@ img{width: 100%}
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-  }
-  .category-title {
-    flex: 0 0 calc(16.6667% - 10px);
-    display: flex;
     justify-content: center;
-    background: #a8a8a8;
-    padding: 12px;
-    color: #fff;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    border-radius: 50px;
-    font-family: "Montserrat", sans-serif;
-  }
-  .category-title:hover {
-    opacity: 0.7;
-  }
-  .category-title li {
-    padding: 0 10px;
-  }
-  .category-title span {
-    color: #222;
   }
   .posts-main-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 40px;
-    padding-bottom: 40px;
   }
   .border {
     box-shadow: 0px 8px 22px -12px rgba(0, 0, 0, 0.64);
-    border-radius: 50px;
-    height: 450px;
+    border-radius: 10px;
+    height: fit-content;
+    transition: all 300ms;
+
+    &:hover {
+      transform: scale(1.1);
+      transition: all 300ms;
+    }
   }
+  
   .post-img {
     position: relative;
   }
@@ -151,7 +161,7 @@ img{width: 100%}
     background: #f0544f;
   }
   .imagemparte {
-    border-radius: 50px;
+    border-radius: 10px 10px 0px 0px;
   }
   .fotter {
     padding: 40px 0;

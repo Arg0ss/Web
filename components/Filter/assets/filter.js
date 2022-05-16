@@ -1,27 +1,31 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBorderAll, faTheaterMasks, faLandmark, faChartArea, faCoins, faRunning } from '@fortawesome/free-solid-svg-icons'
+
+
 export const Tag = [
   {
     type: "Tudo",
-    icon: <i className="fas fa-border-all"></i>,
+    icon: <FontAwesomeIcon icon={faBorderAll} color="#fff" />,
   },
   {
+    color: "#00a7ea",
     type: "Criptomoeda",
-    icon: <i className="fas fa-theater-masks"></i>,
+    icon: <FontAwesomeIcon icon={faTheaterMasks} color="#fff" />,
   },
   {
+    color: "#8000ff",
     type: "BlockChain",
-    icon: <i className="fas fa-landmark"></i>,
+    icon: <FontAwesomeIcon icon={faLandmark} color="#fff" />,
   },
   {
+    color: "#ff3e3efa",
     type: "Finanças",
-    icon: <i className="fas fa-chart-area"></i>,
+    icon: <FontAwesomeIcon icon={faChartArea} color="#fff" />,
   },
   {
+    color: "#008000",
     type: "Investimento",
-    icon: <i className="fas fa-coins"></i>,
-  },
-  {
-    type: "Gráfico",
-    icon: <i className="fas fa-running"></i>,
+    icon: <FontAwesomeIcon icon={faCoins} color="#fff" />,
   },
 ];
 

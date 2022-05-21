@@ -1,13 +1,17 @@
 import React from "react";
+
 import { useQuery } from "react-query";
 import { Table  } from "antd";
 import Router from "next/router";
+
+import Charts from '../Charts'
+
 const useGetCardData = (options) => {
   return useQuery(
     `getdata-card`,
     async () => {
       const response = await fetch(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&days=7`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&days=1`
       );
       return await response.json();
     },
@@ -97,6 +101,14 @@ export default function List() {
         return <>{formatPrice(market_cap)}</>;
       },
     },
+    {
+      title: "market cap",
+      dataIndex: "id",
+      key: "id",
+      render: (id) => {
+        return <Charts id={id} />
+      },
+    },
   ];
 
   const { data, isLoading } = useGetCardData({
@@ -104,15 +116,14 @@ export default function List() {
     staleTime: 60000,
   });
 
-  console.log(data)
-
-
   if (isLoading) return null;
 
   return (
+    <>
     <Table
       columns={columns}
       dataSource={data}
     />
+    </>
   );
 }

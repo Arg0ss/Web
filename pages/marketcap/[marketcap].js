@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { VictoryLine } from "victory";
 import { useQuery } from "react-query";
 import format from "date-fns/format";
-import Router from "next/router";
+import { useRouter } from "next/router";
 
-export default function MarketCap({ cryptoNameParm }) {
+export default function MarketCap() {
+    const router = useRouter()
   const intervals = [
     {
       label: "1D",
@@ -24,7 +25,6 @@ export default function MarketCap({ cryptoNameParm }) {
     },
   ];
 
-  console.log(cryptoNameParm)
 
   const useGetChartData = (cryptoName, interval, options) => {
     return useQuery(
@@ -32,9 +32,7 @@ export default function MarketCap({ cryptoNameParm }) {
       async () => {
         const response = await fetch(
           `https://api.coingecko.com/api/v3/coins/${cryptoName}/market_chart?vs_currency=usd&days=7`
-        ).catch((error) => {
-          Router.push('/marketcap')
-        });
+        )
 
         return await response.json();
       },
@@ -44,7 +42,7 @@ export default function MarketCap({ cryptoNameParm }) {
 
   const [dataInterval, setDataInterval] = useState(intervals[0].value);
 
-  const { isLoading, data } = useGetChartData(cryptoNameParm, dataInterval, {
+  const { isLoading, data } = useGetChartData(router.query.marketcap, dataInterval, {
     refetchInterval: 60000,
     staleTime: 60000,
     select: (data) =>

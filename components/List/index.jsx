@@ -1,8 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { Table, Badge  } from "antd";
-import Charts from "../Charts";
-
+import { Table  } from "antd";
+import Router from "next/router";
 const useGetCardData = (options) => {
   return useQuery(
     `getdata-card`,
@@ -53,8 +52,11 @@ export default function List() {
     },
     {
       title: "Name",
-      dataIndex: "name",
-      key: "name",
+      dataIndex: "id",
+      key: "id",
+      render: (id) => {
+        return <a onClick={() => Router.push(`/marketcap/${id}`)}>{id}</a>;
+      },
     },
     {
       title: "Symbol",
@@ -101,6 +103,8 @@ export default function List() {
     refetchInterval: 60000,
     staleTime: 60000,
   });
+
+  console.log(data)
 
 
   if (isLoading) return null;

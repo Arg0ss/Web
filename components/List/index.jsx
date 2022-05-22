@@ -78,8 +78,6 @@ export default function List() {
       title: "Price",
       dataIndex: "current_price",
       key: "current_price",
-      defaultSortOrder: "descend",
-      sorter: (a, b) => a.current_price - b.current_price,
       render: (current_price) => {
         return <>{formatPrice(current_price)}</>;
       },

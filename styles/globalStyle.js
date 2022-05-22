@@ -18,6 +18,11 @@ const GlobalStyle = createGlobalStyle`
 .negative {
     color: #e15241;
 }
+
+.VictoryContainer {
+    width: fit-content !important;
+    height: 60px !important;
+}
 `;
 
 export default GlobalStyle;

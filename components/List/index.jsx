@@ -39,6 +39,13 @@ const formatPlusMinus = (priceChange) => {
   );
 };
 
+const formatPlusMinusCharts = (priceChange) => {
+  const isPositive = Math.sign(priceChange) >= 0;
+
+  return isPositive ? "#8dc647" : "#e15241"
+
+};
+
 export default function List() {
   const columns = [
     {
@@ -103,10 +110,11 @@ export default function List() {
     },
     {
       title: "market cap",
-      dataIndex: "id",
+      dataIndex: "id,market_cap_change_percentage_24h",
       key: "id",
-      render: (id) => {
-        return <Charts id={id} />
+      render: (id,market_cap_change_percentage_24h) => {
+        console.log(market_cap_change_percentage_24h)
+        return <Charts id={market_cap_change_percentage_24h.id} color={formatPlusMinusCharts(market_cap_change_percentage_24h.market_cap_change_percentage_24h)} />
       },
     },
   ];
@@ -117,6 +125,7 @@ export default function List() {
   });
 
   if (isLoading) return null;
+  const isPositive = Math.sign(data.market_cap_change_percentage_24h) >= 0;
 
   return (
     <>

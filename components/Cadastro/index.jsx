@@ -14,11 +14,14 @@ export default function Cadastro() {
   const [error, setError] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [steps, setSteps] = useState(0);
+
+  const date = new Date();
+
   const onSubmit = (data) => {
     setIsLoading(true);
     axios
       .post(
-        "https://cors-criptomentor.herokuapp.com/https://drf-criptomentor.herokuapp.com/api/v1/?format=json",
+        `${process.env.BASE_API_URL}/createUser`,
         {
           email: data.email,
           username: data.username,
@@ -29,15 +32,13 @@ export default function Cadastro() {
           cpf: data.cpf,
           pfp: null,
           premium: false,
-          created_at: "2022-04-12",
+          created_at: date.toLocaleDateString(),
           is_superuser: false,
           is_staff: false,
         },
         {
           headers: {
-            "Content-Type": "application/json; charset=utf-8",
-            "Access-Control-Allow-Origin": "*",
-            "X-Requested-With": "XMLHttpRequest"
+            "Content-Type": "application/json",
           },
         }
       )
@@ -72,7 +73,6 @@ export default function Cadastro() {
         });
 
         Object.entries(data).map((element, index) => {
-          console.log(element);
           return notification.error({
             message: element[0],
             description: element[1],
@@ -186,7 +186,7 @@ export default function Cadastro() {
                       {...(e) => e}
                       autoComplete="new-password"
                       placeholder="00/00/0000"
-                      mask="9999-99-99"
+                      mask="99/99/9999"
                       beforeMaskedValueChange=" "
                       requeired="true"
                       {...register("data_nascimento")}

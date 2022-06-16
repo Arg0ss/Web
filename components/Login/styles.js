@@ -9,6 +9,35 @@ export const Container = styled.section`
   justify-content: center;
 }
 
+.botao-submit {
+  margin-top: 1rem;
+  padding: 10px;
+  width: 100%;
+  background: linear-gradient(to left, #333ea8, #5f2cb0);
+  cursor: pointer;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 300;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 41px;
+  line-height: 0;
+  transition: all 300ms;
+  
+  &:disabled {
+    pointer-events: none;
+  }
+
+  &:hover {
+    letter-spacing: 0.5px;
+    transition: all 300ms;
+    background: linear-gradient(to right, #333ea8, #5f2cb0);
+  }
+}
+
 main.principal1 {
   background: white;
   min-width: 320px;

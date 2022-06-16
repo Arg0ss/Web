@@ -1,9 +1,55 @@
-import React from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import axios from "axios";
 import Router from "next/router";
+import { notification } from "antd";
+
 import { AiFillInstagram, AiOutlineGoogle } from "react-icons/ai";
+import ScaleLoader from "react-spinners/ScaleLoader";
 import * as S from "./styles";
 
 export default function Login() {
+  const { register, handleSubmit } = useForm();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onSubmit = async (data) => {
+    setIsLoading(true);
+    await axios
+      .post(
+        `${process.env.BASE_API_URL}/token/`,
+        {
+          email: data.email,
+          password: data.password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        if(response.data.access) {
+          console.log(response.data.access)
+          localStorage.setItem('access', response.data.access)
+          localStorage.setItem('refresh', response.data.refresh)
+          Router.push('/dashboard')
+        }
+      })
+      .catch((error) => {
+        const { data } = error.response;
+        Object.entries(data).map((element, index) => {
+          return notification.error({
+            message: element[0],
+            description: element[1],
+            duration: 2.5,
+          });
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   return (
     <S.Container>
       <div className="background-image">
@@ -11,15 +57,16 @@ export default function Login() {
         <section id="tudo1">
           <main className="principal1">
             <h2>Login</h2>
-            <form action="">
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="classes1">
                 <label>Email</label>
                 <input
-                  type="e-mail"
-                  name="username"
+                  type="email"
+                  name="email"
                   placeholder="Coloque seu email"
                   autoComplete="new-password"
                   requeired="true"
+                  {...register("email")}
                 />
                 <div className="underline"></div>
               </div>
@@ -29,17 +76,33 @@ export default function Login() {
                   type="password"
                   name="password"
                   placeholder="Coloque sua senha"
+                  autoComplete="new-password"
+                  requeired="true"
+                  {...register("password")}
                 />
                 <div className="underline"></div>
               </div>
 
-              <input type="button" value="Login" />
+              <button
+                disabled={isLoading}
+                className="botao-submit"
+                type="submit"
+              >
+                {isLoading ? (
+                  <ScaleLoader width={3} height={10} color="#f1f1f1" />
+                ) : (
+                  "Login"
+                )}
+              </button>
             </form>
             <div className="esquecisenha">
-              <a className="Esqs" onClick={() => Router.push('/esqueci-a-senha')}>
+              <a
+                className="Esqs"
+                onClick={() => Router.push("/esqueci-a-senha")}
+              >
                 Esqueci a Senha
               </a>
-              <a className="Esqs" onClick={() => Router.push('/cadastro')}>
+              <a className="Esqs" onClick={() => Router.push("/cadastro")}>
                 Cadastra-se
               </a>
             </div>

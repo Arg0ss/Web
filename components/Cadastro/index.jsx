@@ -21,7 +21,7 @@ export default function Cadastro() {
     setIsLoading(true);
     axios
       .post(
-        `${process.env.BASE_API_URL}/createUser`,
+        `${process.env.BASE_API_URL}/CreateUser`,
         {
           email: data.email,
           username: data.username,

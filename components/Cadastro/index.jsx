@@ -25,7 +25,7 @@ export default function Cadastro() {
         {
           email: data.email,
           username: data.username,
-          password: data.password,
+          senha: data.senha,
           confirmar_senha: data.confirmar_senha,
           tel: data.tel,
           data_nascimento: data.data_nascimento,
@@ -60,7 +60,7 @@ export default function Cadastro() {
         const ErrosStepOne = [
           "email",
           "username",
-          "password",
+          "senha",
           "confirmar_senha",
         ];
 
@@ -137,9 +137,9 @@ export default function Cadastro() {
                       placeholder="Coloque sua senha"
                       autoComplete="new-password"
                       requeired="true"
-                      {...register("password")}
+                      {...register("senha")}
                     />
-                    <S.Underline error={error.password && true} />
+                    <S.Underline error={error.senha && true} />
                   </div>
                   <div className="classes1">
                     <div className="subtitle">

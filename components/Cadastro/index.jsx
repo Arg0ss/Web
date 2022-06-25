@@ -26,7 +26,7 @@ export default function Cadastro() {
           email: data.email,
           username: data.username,
           password: data.password,
-          password_confirm: data.password_confirm,
+          confirmar_senha: data.confirmar_senha,
           tel: data.tel,
           data_nascimento: data.data_nascimento,
           cpf: data.cpf,
@@ -61,7 +61,7 @@ export default function Cadastro() {
           "email",
           "username",
           "password",
-          "password_confirm",
+          "confirmar_senha",
         ];
 
         ErrosStepOne.map((erro, index) => {
@@ -151,9 +151,9 @@ export default function Cadastro() {
                       placeholder="Coloque sua senha"
                       autoComplete="new-password"
                       requeired="true"
-                      {...register("password_confirm")}
+                      {...register("confirmar_senha")}
                     />
-                    <S.Underline error={error.password_confirm && true} />
+                    <S.Underline error={error.confirmar_senha && true} />
                   </div>
                   <button className="botao-submit" onClick={() => setSteps(1)}>
                     Continuar

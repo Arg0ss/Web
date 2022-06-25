@@ -8,7 +8,9 @@ const UserContextProvider = ({ children }) => {
   const router = useRouter();
 
   const [user, setUser] = useState({});
-  const [isAuth, setIsAuth] = useState(!!user);
+  const [isAuth, setIsAuth] = useState(false);
+
+  console.log(isAuth)
 
   useEffect(() => {
     const token_refresh = localStorage.getItem("refresh");
@@ -25,7 +27,7 @@ const UserContextProvider = ({ children }) => {
         .catch((error) => {
           localStorage.removeItem("access");
           localStorage.removeItem("refresh");
-          setIsAuth(false);
+          setIsAuth(true);
         });
     };
 
@@ -43,15 +45,25 @@ const UserContextProvider = ({ children }) => {
           const { data } = response;
           setIsAuth(true);
           setUser(data);
+          console.log(data)
         })
         .catch((error) => {
           handleRefleshToken();
         });
     };
 
-    handleRefleshToken();
     handleUserData();
-  }, [router]);
+    handleRefleshToken();
+  }, [isAuth && router]);
+
+  useEffect(() => {
+    console.log(router.asPath)
+    if(!isAuth) {
+      if(router.asPath === '/dashboard') {
+        router.push('/')
+      }
+    }
+  }, [isAuth])
 
   const handleSingOut = async () => {
     localStorage.removeItem("access");

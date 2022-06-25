@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { notification } from "antd";
 
 import { AiFillInstagram, AiOutlineGoogle } from "react-icons/ai";
@@ -9,6 +9,7 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 import * as S from "./styles";
 
 export default function Login() {
+  const { push } = useRouter()
   const { register, handleSubmit } = useForm();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -27,12 +28,12 @@ export default function Login() {
           },
         }
       )
-      .then((response) => {
+      .then(async (response) => {
         if(response.data.access) {
           console.log(response.data.access)
           localStorage.setItem('access', response.data.access)
           localStorage.setItem('refresh', response.data.refresh)
-          Router.push('/dashboard')
+          push('/dashboard')
         }
       })
       .catch((error) => {
